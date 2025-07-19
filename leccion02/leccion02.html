@@ -9,6 +9,66 @@
         h1 { color: #2c3e50; }
         code { background: #eee; padding: 2px 6px; border-radius: 4px; }
         .reto { background: #eaf6ff; border-left: 4px solid #2980b9; padding: 12px; margin-top: 24px; }
+        .modern-image {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin: 20px auto;
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            animation: neonBorder 3s infinite;
+        }
+        .modern-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+            filter: brightness(1.1) contrast(1.1);
+            border-radius: 20px;
+            animation: liquidWave 0.8s ease-in-out, neonBorderHover 2s infinite;
+        }
+        .modern-image.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            width: auto;
+            height: auto;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        @keyframes neonBorder {
+            0%, 100% { border-color: #00ff88; box-shadow: 0 0 20px #00ff88, inset 0 0 20px rgba(0,255,136,0.1); }
+            25% { border-color: #88ff00; box-shadow: 0 0 25px #88ff00, inset 0 0 25px rgba(136,255,0,0.1); }
+            50% { border-color: #8B4513; box-shadow: 0 0 20px #D2691E, inset 0 0 20px rgba(210,105,30,0.1); }
+            75% { border-color: #A0522D; box-shadow: 0 0 25px #CD853F, inset 0 0 25px rgba(205,133,63,0.1); }
+        }
+        @keyframes neonBorderHover {
+            0%, 100% { border-color: #00ffaa; box-shadow: 0 0 30px #00ffaa, inset 0 0 30px rgba(0,255,170,0.2); }
+            50% { border-color: #D2691E; box-shadow: 0 0 30px #D2691E, inset 0 0 30px rgba(210,105,30,0.2); }
+        }
+        .image-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -20,7 +80,60 @@
         <div class="reto">
             <strong>Reto:</strong> Agrega un nuevo elemento HTML y descríbelo en un comentario.
         </div>
+        
+        <!-- Elemento imagen agregado: La etiqueta <img> es un elemento vacío (sin cierre) 
+             que se utiliza para insertar imágenes en una página web. 
+             Requiere el atributo 'src' para especificar la ruta de la imagen 
+             y 'alt' para texto alternativo de accesibilidad -->
+        <div class="image-container">
+            <img src="img/ejemplo.jpg" alt="Imagen de ejemplo para demostrar el elemento HTML img" class="modern-image" onclick="expandImage(this)">
+        </div>
+        <div class="overlay" onclick="closeImage()"></div>
+        
         <p><a href="../index.html">Volver al índice</a></p>
     </div>
+    
+    <script>
+        function expandImage(img) {
+            // Get the natural dimensions of the image
+            const naturalWidth = img.naturalWidth;
+            const naturalHeight = img.naturalHeight;
+            const aspectRatio = naturalWidth / naturalHeight;
+            
+            // Calculate the viewport dimensions
+            const viewportWidth = window.innerWidth * 0.9;
+            const viewportHeight = window.innerHeight * 0.9;
+            
+            // Calculate the scaled dimensions maintaining aspect ratio
+            let scaledWidth, scaledHeight;
+            
+            if (aspectRatio > viewportWidth / viewportHeight) {
+                // Image is wider relative to viewport
+                scaledWidth = Math.min(naturalWidth, viewportWidth);
+                scaledHeight = scaledWidth / aspectRatio;
+            } else {
+                // Image is taller relative to viewport
+                scaledHeight = Math.min(naturalHeight, viewportHeight);
+                scaledWidth = scaledHeight * aspectRatio;
+            }
+            
+            // Apply the calculated dimensions
+            img.style.width = scaledWidth + 'px';
+            img.style.height = scaledHeight + 'px';
+            
+            img.classList.add('expanded');
+            document.querySelector('.overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImage() {
+            const img = document.querySelector('.modern-image');
+            img.classList.remove('expanded');
+            img.style.width = '';
+            img.style.height = '';
+            document.querySelector('.overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>

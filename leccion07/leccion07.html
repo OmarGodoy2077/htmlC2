@@ -9,28 +9,75 @@
         h1 { color: #2c3e50; }
         .reto { background: #eaf6ff; border-left: 4px solid #2980b9; padding: 12px; margin-top: 24px; }
         nav { background: #e3e3e3; padding: 8px; margin-bottom: 16px; }
+        main { margin: 20px 0; }
+        aside { background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        footer { background: #343a40; color: white; padding: 10px; text-align: center; margin-top: 20px; }
+        figure { margin: 15px 0; padding: 10px; background: #fff3cd; border-radius: 5px; }
+        figcaption { font-style: italic; color: #6c757d; }
+        time { background: #d4edda; padding: 2px 6px; border-radius: 3px; }
+        mark { background: #fff3cd; padding: 2px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Estructurar el contenido</h1>
-        <nav>Menú de navegación</nav>
-        <header><h2>Encabezado principal</h2></header>
-        <section>
-            <article>
-                <h3>Artículo 1</h3>
-                <p>Contenido del artículo 1.</p>
-            </article>
-            <article>
-                <h3>Artículo 2</h3>
-                <p>Contenido del artículo 2.</p>
-            </article>
-        </section>
-        <aside>Barra lateral</aside>
-        <footer>Pie de página</footer>
+        <header>
+            <h1>Estructurar el contenido</h1>
+            <nav>
+                <strong>Navegación:</strong> 
+                <a href="#inicio">Inicio</a> | 
+                <a href="#articulos">Artículos</a> | 
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="articulos">
+                <h2>Artículos Destacados</h2>
+                
+                <article>
+                    <header>
+                        <h3>Importancia de las Etiquetas Semánticas</h3>
+                        <p>Publicado el <time datetime="2024-01-15">15 de enero de 2024</time></p>
+                    </header>
+                    <p>Las etiquetas semánticas como <mark>&lt;article&gt;</mark>, <mark>&lt;section&gt;</mark> y <mark>&lt;header&gt;</mark> mejoran la accesibilidad y SEO del sitio web.</p>
+                    
+                    <figure>
+                        <div style="background: #e9ecef; padding: 20px; text-align: center;">
+                            [Diagrama de estructura HTML5]
+                        </div>
+                        <figcaption>Ejemplo de estructura semántica en HTML5</figcaption>
+                    </figure>
+                </article>
+
+                <article>
+                    <header>
+                        <h3>Beneficios del HTML Semántico</h3>
+                        <p>Por <strong>Desarrollador Web</strong> - <time datetime="2024-01-10">10 de enero de 2024</time></p>
+                    </header>
+                    <p>El uso correcto de elementos semánticos facilita la comprensión del contenido tanto para navegadores como para tecnologías asistivas.</p>
+                    
+                    <details>
+                        <summary>Ver más detalles técnicos</summary>
+                        <p>Los elementos semánticos incluyen: main, section, article, aside, nav, header, footer, figure, time, mark, entre otros.</p>
+                    </details>
+                </article>
+            </section>
+        </main>
+
+        <aside>
+            <h4>Información Adicional</h4>
+            <p>💡 <strong>Tip:</strong> Usa siempre la etiqueta más específica para tu contenido.</p>
+            <p>📚 Recursos recomendados para aprender más sobre HTML semántico.</p>
+        </aside>
+
+        <footer>
+            <p>&copy; 2024 - Curso de HTML y CSS | Todos los derechos reservados</p>
+        </footer>
+
         <div class="reto">
-            <strong>Reto:</strong> Reorganiza el contenido usando diferentes etiquetas semánticas.
+            <strong>Reto completado:</strong> ✅ Se ha reorganizado el contenido usando diferentes etiquetas semánticas como main, header, time, figure, figcaption, details, summary y mark.
         </div>
+        
         <p><a href="../index.html">Volver al índice</a></p>
     </div>
 </body>
